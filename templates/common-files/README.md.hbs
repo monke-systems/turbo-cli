@@ -1,16 +1,6 @@
-# turbo-cli package
+# {{projectName}} {{#if isNpmPackage}}package{{/if}}
 
-## Description
-
-Turbo package for many purposes.
-
-## Example usage
-
-```bash
-npm i @turbo/cli
-turbo-cli
-```
-
+{{#if isNpmPackage}}
 ## Package update flow
 
 Package publishing only available via CI jobs.
@@ -28,3 +18,4 @@ npm version major | minor | patch
 ```
 
 Learn more <https://docs.npmjs.com/cli/v8/commands/npm-version>
+{{/if}}

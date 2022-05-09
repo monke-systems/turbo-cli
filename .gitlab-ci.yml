@@ -1,0 +1,18 @@
+include:
+  - project: emcal/sussy-proj/ci-configs
+    ref: init
+    file: javascript/js-install-deps.yml
+  - project: emcal/sussy-proj/ci-configs
+    ref: init
+    file: javascript/js-lint.yml
+  - project: emcal/sussy-proj/ci-configs
+    ref: init
+    file: javascript/js-test.yml
+  - project: emcal/sussy-proj/ci-configs
+    ref: init
+    file: javascript/js-publish-package.yml
+
+stages:
+  - install-deps
+  - validate
+  - publish-package

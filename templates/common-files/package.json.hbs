@@ -1,0 +1,87 @@
+{
+  "name": "{{packageName}}",
+  "description": "{{packageName}} package",
+  "version": "0.9.5",
+  "main": "{{main}}",
+  "types": "{{types}}",
+  {{#if isPackage}}
+  "files": [
+    "lib"
+  ],
+  {{else}}
+  "private": "true",
+  {{/if}}
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc --project tsconfig.build.json",
+    {{#if withTests}}
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "jest --passWithNoTests",
+    "test:unit:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --passWithNoTests --config tests/jest-e2e.json",
+    "test:e2e:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config tests/jest-e2e.json",
+    {{else}}
+    "test": "echo tests?",
+    {{/if}}
+    "lint": "eslint \"{src,tests}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,tests}/**/*.ts\" --fix",
+    "prepare": "husky install",
+    {{#if isPackage}}
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf lib",
+    {{/if}}
+    "pre-commit": "lint-staged"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    {{#if withTests}}
+    "@types/jest": "27.5.0",
+    {{/if}}
+    "@typescript-eslint/eslint-plugin": "5.22.0",
+    "@typescript-eslint/parser": "5.22.0",
+    "eslint": "8.14.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-unicorn": "42.0.0",
+    "eslint-plugin-unused-imports": "2.0.0",
+    "husky": "7.0.4",
+    {{#if withTests}}
+    "jest": "28.1.0",
+    {{/if}}
+    "lint-staged": "12.4.1",
+    {{#if withTests}}
+    "ts-jest": "28.0.1",
+    {{/if}}
+    "ts-node": "10.7.0",
+    "typescript": "4.6.4"
+  },
+  {{#if repoUrl}}
+  "repository": {
+    "type": "git",
+    "url": "{{repoUrl}}"
+  },
+  "bugs": {
+    "url": "{{repoUrl}}/issues"
+  },
+  "homepage": "{{repoUrl}}/#readme",
+  {{/if}}
+  {{#if withTests}}
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  },
+  {{/if}}
+  "lint-staged": {
+    "*.ts": "eslint"
+  }
+}
+
