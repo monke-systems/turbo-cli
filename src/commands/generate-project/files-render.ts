@@ -1,0 +1,14 @@
+import * as fs from 'fs';
+import * as handlebars from 'handlebars';
+import { resolveTemplatePath } from './template-resolver';
+import { CommonFileDefinition, TEMPLATE_ROOT } from './types';
+
+export const renderCommonFile = (defintion: CommonFileDefinition): string => {
+  const tempatePath = resolveTemplatePath(defintion.type, TEMPLATE_ROOT.COMMON_FILE);
+  const templateStr = fs.readFileSync(tempatePath, 'utf-8');
+
+  const template = handlebars.compile(templateStr);
+  const res = template(defintion.values);
+
+  return res;
+};
