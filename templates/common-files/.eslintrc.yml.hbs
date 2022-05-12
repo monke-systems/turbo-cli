@@ -1,0 +1,11 @@
+root: true
+parserOptions:
+  project: tsconfig.json
+  sourceType: module
+env:
+  node: true
+  {{#if withTests}}
+  jest: true
+  {{/if}}
+extends:
+  - '@turbo/eslint-config/typescript'

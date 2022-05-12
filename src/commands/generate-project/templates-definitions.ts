@@ -14,8 +14,15 @@ export const getNpmPackageDefinition = (args: {
     ],
     commonFiles: [
       { type: COMMON_FILE.EDITOR_CONIFG },
+      { type: COMMON_FILE.PRETTIER_RC },
       { type: COMMON_FILE.GIT_IGNORE },
       { type: COMMON_FILE.NPM_RC },
+      {
+        type: COMMON_FILE.ESLINT_RC,
+        values: {
+          withTests: args.withTests,
+        },
+      },
       {
         type: COMMON_FILE.PACKAGE_JSON,
         values: {

@@ -1,4 +1,4 @@
-import type { PackageJsonValues, ReadmeValues } from './common-files-values';
+import type { CommonFileValues } from './common-files-values';
 
 export type GenerateProjectArgs = {
   template: TEMPLATE;
@@ -16,13 +16,15 @@ export enum TEMPLATE_ROOT {
 }
 
 export enum COMMON_FILE {
-  PACKAGE_JSON = 'package.json',
   EDITOR_CONIFG = '.editorconfig',
+  ESLINT_RC = '.eslintrc.yml',
   GIT_IGNORE = '.gitignore',
   NPM_RC = '.npmrc',
+  PRETTIER_RC = '.prettierrc.yml',
+  PACKAGE_JSON = 'package.json',
   README = 'README.md',
-  TS_CONFIG = 'tsconfig.json',
   TS_CONFIG_BUILD = 'tsconfig.build.json',
+  TS_CONFIG = 'tsconfig.json',
 }
 
 export enum COMMON_DIR {
@@ -36,7 +38,7 @@ export enum TEMPLATE {
 
 export type CommonFileDefinition = {
   type: COMMON_FILE;
-  values?: PackageJsonValues | ReadmeValues;
+  values?: CommonFileValues;
 };
 
 export type TemplateDefinition = {
