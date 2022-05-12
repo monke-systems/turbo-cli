@@ -1,9 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as inquirer from 'inquirer';
-import { TEMPLATE, GENERATE_PROJECT_ARGS } from './types';
+import type { GenerateProjectArgs } from './types';
+import { TEMPLATE } from './types';
 
-export const askProjectTemplate = async (): Promise<GENERATE_PROJECT_ARGS> => {
+export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
   const results = await inquirer.prompt([
     {
       name: 'template',
@@ -25,7 +26,9 @@ export const askProjectTemplate = async (): Promise<GENERATE_PROJECT_ARGS> => {
         try {
           const res = fs.readdirSync(path.resolve(value));
           if (res.length > 0) {
-            throw new Error('Directory is not empty! It\'s unsafe to create project here');
+            throw new Error(
+              "Directory is not empty! It's unsafe to create project here",
+            );
           }
           return true;
         } catch (e) {
@@ -62,7 +65,11 @@ export const askProjectTemplate = async (): Promise<GENERATE_PROJECT_ARGS> => {
     {
       name: 'confirm',
       type: 'confirm',
-      message: `What we got to do \n${JSON.stringify(results, null, 2)}\n Confirm?`,
+      message: `What we got to do \n${JSON.stringify(
+        results,
+        null,
+        2,
+      )}\n Confirm?`,
     },
   ]);
 

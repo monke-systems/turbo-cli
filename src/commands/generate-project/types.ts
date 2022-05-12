@@ -1,6 +1,6 @@
-import { PackageJsonValues, ReadmeValues } from './common-files-values';
+import type { PackageJsonValues, ReadmeValues } from './common-files-values';
 
-export type GENERATE_PROJECT_ARGS = {
+export type GenerateProjectArgs = {
   template: TEMPLATE;
   targetDir: string;
   projectName: string;
@@ -27,7 +27,7 @@ export enum COMMON_FILE {
 
 export enum COMMON_DIR {
   HUSKY = '.husky',
-  TESTS = 'tests'
+  TESTS = 'tests',
 }
 
 export enum TEMPLATE {

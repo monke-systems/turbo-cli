@@ -5,9 +5,10 @@ import { initGitRepo, setGitRemoteOrigin } from './actions';
 import { renderCommonFile } from './files-render';
 import { resolveTemplatePath } from './template-resolver';
 import { getNpmPackageDefinition } from './templates-definitions';
-import { TEMPLATE, TemplateDefinition, TEMPLATE_ROOT, GENERATE_PROJECT_ARGS } from './types';
+import type { TemplateDefinition, GenerateProjectArgs } from './types';
+import { TEMPLATE, TEMPLATE_ROOT } from './types';
 
-export const generateProject = async (args: GENERATE_PROJECT_ARGS) => {
+export const generateProject = (args: GenerateProjectArgs) => {
   const { projectName, withTests, repositoryUrl } = args;
 
   log.debug('Generate project task just started');
@@ -48,8 +49,11 @@ export const generateProject = async (args: GENERATE_PROJECT_ARGS) => {
   // Copy common files
   log.debug('Copying common files');
   for (const commonFile of definition.commonFiles) {
-    log.debug(`Rendering file "${commonFile.type}". Values:`, commonFile.values);
-    const res = await renderCommonFile({
+    log.debug(
+      `Rendering file "${commonFile.type}". Values:`,
+      commonFile.values,
+    );
+    const res = renderCommonFile({
       type: commonFile.type,
       values: commonFile.values,
     });
