@@ -1,5 +1,4 @@
 export enum COMMAND {
   WHOAMI = 'whoami',
-  GENERATE_PROJECT = 'generate_project'
+  GENERATE_PROJECT = 'generate_project',
 }
-

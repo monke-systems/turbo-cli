@@ -14,7 +14,7 @@ export const runUi = async () => {
   const command = await askCommand();
 
   if (command === COMMAND.WHOAMI) {
-    whoami();
+    await whoami();
   } else if (command === COMMAND.GENERATE_PROJECT) {
     const args = await askProjectTemplate();
     generateProject(args);

@@ -6,7 +6,8 @@ type SeqItem = {
   time: number;
 };
 
-const turboText = 'CiAgIF9fX19fICAgICAgX18gICAgIF9fCiAgLyBfX19ffCAgIC9cXCBcICAgLyAvCiB8IHwgIF9fICAgLyAgXFwgXF8vIC8gCiB8IHwgfF8gfCAvIC9cIFxcICAgLyAgCiB8IHxfX3wgfC8gX19fXyBcfCB8ICAgCiAgXF9fX19fL18vICAgIFxfXF98ICAgCiAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgCg==';
+const turboText =
+  'CiAgIF9fX19fICAgICAgX18gICAgIF9fCiAgLyBfX19ffCAgIC9cXCBcICAgLyAvCiB8IHwgIF9fICAgLyAgXFwgXF8vIC8gCiB8IHwgfF8gfCAvIC9cIFxcICAgLyAgCiB8IHxfX3wgfC8gX19fXyBcfCB8ICAgCiAgXF9fX19fL18vICAgIFxfXF98ICAgCiAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgCg==';
 
 const messageSequence = async (items: SeqItem[]) => {
   for (const item of items) {
@@ -44,6 +45,8 @@ export const whoami = async () => {
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    await messageSequence(lines.map((line) => ({ text: line + '\n', time: 20 })));
+    await messageSequence(
+      lines.map((line) => ({ text: line + '\n', time: 20 })),
+    );
   }
 };
