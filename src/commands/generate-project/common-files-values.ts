@@ -11,3 +11,12 @@ export type ReadmeValues = {
   projectName: string;
   isNpmPackage: boolean;
 };
+
+export type EslintRcValues = {
+  withTests: boolean;
+};
+
+export type CommonFileValues =
+  | PackageJsonValues
+  | ReadmeValues
+  | EslintRcValues;
