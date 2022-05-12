@@ -1,3 +1,3 @@
 import { runUi } from './index';
 
-runUi();
+runUi().catch(console.error);
