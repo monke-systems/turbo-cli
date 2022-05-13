@@ -12,6 +12,7 @@ export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
       type: 'list',
       message: 'Nice. Сhoose, buddy',
       choices: [
+        { name: 'generic project with typescript', value: TEMPLATE.GENERIC_TS },
         { name: 'npm package with typescript', value: TEMPLATE.NPM_PACKAGE },
       ],
     },
