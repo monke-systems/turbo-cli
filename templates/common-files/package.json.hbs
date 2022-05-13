@@ -16,10 +16,10 @@
     "build": "tsc --project tsconfig.build.json",
     {{#if withTests}}
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "jest --passWithNoTests",
-    "test:unit:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --passWithNoTests --config tests/jest-e2e.json",
-    "test:e2e:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config tests/jest-e2e.json",
+    "test:unit": "jest --passWithNoTests -t",
+    "test:unit:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand -t",
+    "test:e2e": "jest --passWithNoTests --config tests/jest-e2e.json -t",
+    "test:e2e:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config tests/jest-e2e.json -t",
     {{else}}
     "test": "echo tests?",
     {{/if}}
@@ -32,9 +32,13 @@
     {{/if}}
     "pre-commit": "lint-staged"
   },
-  "dependencies": {},
+  {{#unless isPackage}}
+  "dependencies": {
+    "source-map-support": "0.5.21"
+  },
+  {{/unless}}
   "devDependencies": {
-    "@turbo/eslint-config": "0.9.7",
+    "@turbo/eslint-config": "0.9.8",
     {{#if withTests}}
     "@types/jest": "27.5.0",
     {{/if}}

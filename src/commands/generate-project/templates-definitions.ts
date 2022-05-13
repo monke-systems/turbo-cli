@@ -41,7 +41,13 @@ export const getNpmPackageDefinition = (args: {
           isNpmPackage: true,
         },
       },
-      { type: COMMON_FILE.TS_CONFIG },
+      {
+        type: COMMON_FILE.TS_CONFIG,
+        values: {
+          isPackage: true,
+          withTests: args.withTests,
+        },
+      },
       { type: COMMON_FILE.TS_CONFIG_BUILD },
     ],
   };
