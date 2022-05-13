@@ -1,6 +1,6 @@
 {
   "name": "@turbo/cli",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "author": {
     "name": "TurboDevelopers"
   },
@@ -16,7 +16,7 @@
     "templates"
   ],
   "scripts": {
-    "start": "NODE_ENV=development ts-node src/run-ui.ts",
+    "start": "ts-node src/run-ui.ts",
     "build": "tsc --project tsconfig.build.json",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "jest --passWithNoTests -t",

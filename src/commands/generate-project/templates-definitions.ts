@@ -52,3 +52,55 @@ export const getNpmPackageDefinition = (args: {
     ],
   };
 };
+
+export const getGenericTsDefinition = (args: {
+  projectName: string;
+  repositoryUrl: string;
+  withTests: boolean;
+}): TemplateDefinition => {
+  return {
+    type: TEMPLATE.GENERIC_TS,
+    commonDirs: [
+      COMMON_DIR.HUSKY,
+      ...(args.withTests ? [COMMON_DIR.TESTS] : []),
+    ],
+    commonFiles: [
+      { type: COMMON_FILE.EDITOR_CONIFG },
+      { type: COMMON_FILE.GIT_IGNORE },
+      { type: COMMON_FILE.PRETTIER_RC },
+      { type: COMMON_FILE.NPM_RC },
+      {
+        type: COMMON_FILE.ESLINT_RC,
+        values: {
+          withTests: args.withTests,
+        },
+      },
+      {
+        type: COMMON_FILE.PACKAGE_JSON,
+        values: {
+          packageName: args.projectName,
+          main: 'dist/index.js',
+          types: 'dist/index.d.ts',
+          repoUrl: args.repositoryUrl,
+          isPackage: false,
+          withTests: args.withTests,
+        },
+      },
+      {
+        type: COMMON_FILE.README,
+        values: {
+          projectName: args.projectName,
+          isNpmPackage: false,
+        },
+      },
+      {
+        type: COMMON_FILE.TS_CONFIG,
+        values: {
+          isPackage: false,
+          withTests: args.withTests,
+        },
+      },
+      { type: COMMON_FILE.TS_CONFIG_BUILD },
+    ],
+  };
+};
