@@ -16,7 +16,13 @@ export type EslintRcValues = {
   withTests: boolean;
 };
 
+export type TsConfigValues = {
+  isPackage: boolean;
+  withTests: boolean;
+};
+
 export type CommonFileValues =
   | PackageJsonValues
   | ReadmeValues
+  | TsConfigValues
   | EslintRcValues;
