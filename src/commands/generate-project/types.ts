@@ -1,5 +1,10 @@
 import type { CommonFileValues } from './common-files-values';
 
+export enum TEMPLATE {
+  NPM_PACKAGE = 'npm-package',
+  GENERIC_TS = 'generic-ts',
+}
+
 export type GenerateProjectArgs = {
   template: TEMPLATE;
   targetDir: string;
@@ -30,10 +35,6 @@ export enum COMMON_FILE {
 export enum COMMON_DIR {
   HUSKY = '.husky',
   TESTS = 'tests',
-}
-
-export enum TEMPLATE {
-  NPM_PACKAGE = 'npm-package',
 }
 
 export type CommonFileDefinition = {

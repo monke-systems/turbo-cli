@@ -4,7 +4,10 @@ import * as log from 'loglevel';
 import { initGitRepo, setGitRemoteOrigin } from './actions';
 import { renderCommonFile } from './files-render';
 import { resolveTemplatePath } from './template-resolver';
-import { getNpmPackageDefinition } from './templates-definitions';
+import {
+  getGenericTsDefinition,
+  getNpmPackageDefinition,
+} from './templates-definitions';
 import type { TemplateDefinition, GenerateProjectArgs } from './types';
 import { TEMPLATE, TEMPLATE_ROOT } from './types';
 
@@ -18,6 +21,13 @@ export const generateProject = (args: GenerateProjectArgs) => {
   switch (args.template) {
     case TEMPLATE.NPM_PACKAGE:
       definition = getNpmPackageDefinition({
+        projectName,
+        repositoryUrl,
+        withTests,
+      });
+      break;
+    case TEMPLATE.GENERIC_TS:
+      definition = getGenericTsDefinition({
         projectName,
         repositoryUrl,
         withTests,
