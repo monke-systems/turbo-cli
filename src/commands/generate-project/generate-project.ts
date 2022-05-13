@@ -80,7 +80,7 @@ export const generateProject = (args: GenerateProjectArgs) => {
 
     initGitRepo(outDir);
 
-    if (args.repositoryUrl && args.repositoryUrl.length > 0) {
+    if (args.repositoryUrl.length > 0) {
       log.debug('Set git remote origin');
       setGitRemoteOrigin(outDir, args.repositoryUrl);
     }

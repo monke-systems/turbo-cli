@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as inquirer from 'inquirer';
+import { isNodeError } from '../../utils/utils';
 import type { GenerateProjectArgs } from './types';
 import { TEMPLATE } from './types';
 
@@ -32,10 +33,10 @@ export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
           }
           return true;
         } catch (e) {
-          if (e.code === 'ENOENT') {
+          if (isNodeError(e) && e.code === 'ENOENT') {
             return true;
           }
-          throw new Error(e);
+          throw e;
         }
       },
     },

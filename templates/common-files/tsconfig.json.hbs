@@ -6,24 +6,14 @@
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./lib",
-    "esModuleInterop": false,
+    "outDir": "./{{#if isPackage}}lib{{else}}dist{{/if}}",
+    "strict": true,
+    "esModuleInterop": false, // enable if you having problems with compilation
+    "skipLibCheck": false,  // enable if you having problems with compilation
+    "noUncheckedIndexedAccess": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
-    "strictNullChecks": true /* Enable strict null checks. */,
-    "strictFunctionTypes": true /* Enable strict checking of function types. */,
-    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
-    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
-    "skipLibCheck": true,
-    "types": [
-      "node",
-      "jest"
-    ],
+    "types": ["node"{{#if withTests}}, "jest"{{/if}}]
   },
-  "include": [
-    "src/**/*.ts", "tests/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts"{{#if withTests}}, "tests/**/*.ts"{{/if}}],
+  "exclude": ["node_modules"]
 }
