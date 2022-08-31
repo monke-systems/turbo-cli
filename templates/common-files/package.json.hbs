@@ -127,9 +127,12 @@
     "ts-jest": "28.0.8",
     {{/if}}
     {{#if isNestProject}}
-    "tsconfig-paths": "3.14.1",
+    "ts-loader": "9.3.1",
     {{/if}}
     "ts-node": "10.9.1",
+    {{#if isNestProject}}
+    "tsconfig-paths": "3.14.1",
+    {{/if}}
     "typescript": "4.7.4"
   },
   {{#if repoUrl}}
