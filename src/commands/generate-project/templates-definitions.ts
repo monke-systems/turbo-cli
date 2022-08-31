@@ -104,3 +104,58 @@ export const getGenericTsDefinition = (args: {
     ],
   };
 };
+
+export const getNestJsDefinition = (args: {
+  projectName: string;
+  repositoryUrl: string;
+}): TemplateDefinition => {
+  return {
+    type: TEMPLATE.NEST_JS,
+    commonDirs: [COMMON_DIR.HUSKY],
+    commonFiles: [
+      { type: COMMON_FILE.EDITOR_CONIFG },
+      { type: COMMON_FILE.GIT_IGNORE },
+      { type: COMMON_FILE.PRETTIER_RC },
+      { type: COMMON_FILE.NPM_RC },
+      {
+        type: COMMON_FILE.ESLINT_RC,
+        values: {
+          withTests: true,
+          isNestProject: true,
+        },
+      },
+      {
+        type: COMMON_FILE.PACKAGE_JSON,
+        values: {
+          packageName: args.projectName,
+          main: 'dist/src/main.js',
+          repoUrl: args.repositoryUrl,
+          isPackage: false,
+          withTests: true,
+          isNestProject: true,
+          includeDotenv: true,
+        },
+      },
+      {
+        type: COMMON_FILE.README,
+        values: {
+          projectName: args.projectName,
+          configReferenceLink: true,
+        },
+      },
+      {
+        type: COMMON_FILE.TS_CONFIG,
+        values: {
+          isPackage: false,
+          isNestProject: true,
+        },
+      },
+      {
+        type: COMMON_FILE.TS_CONFIG_BUILD,
+        values: {
+          isNestProject: true,
+        },
+      },
+    ],
+  };
+};

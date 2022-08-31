@@ -3,6 +3,7 @@ import type { CommonFileValues } from './common-files-values';
 export enum TEMPLATE {
   NPM_PACKAGE = 'npm-package',
   GENERIC_TS = 'generic-ts',
+  NEST_JS = 'nestjs',
 }
 
 export type GenerateProjectArgs = {

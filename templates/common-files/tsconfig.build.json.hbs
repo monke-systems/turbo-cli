@@ -1,3 +1,9 @@
+{{#if isNestProject}}
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+}
+{{else}}
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
@@ -7,3 +13,4 @@
   },
   "exclude": ["node_modules", "tests", "lib", "**/*spec.ts"]
 }
+{{/if}}

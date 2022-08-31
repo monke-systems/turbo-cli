@@ -1,3 +1,32 @@
+{{#if isNestProject}}
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": false,
+    "target": "es2020",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "strict": true,
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ],
+      "@app/logger": [
+        "libs/logger/src"
+      ],
+      "@app/logger/*": [
+        "libs/logger/src/*"
+      ]
+    }
+  }
+}
+{{else}}
 {
   "compilerOptions": {
     "incremental": true,
@@ -17,3 +46,4 @@
   "include": ["src/**/*.ts"{{#if withTests}}, "tests/**/*.ts"{{/if}}],
   "exclude": ["node_modules"]
 }
+{{/if}}

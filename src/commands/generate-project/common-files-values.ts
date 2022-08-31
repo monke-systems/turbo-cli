@@ -1,24 +1,29 @@
 export type PackageJsonValues = {
   packageName: string;
   main: string;
-  types: string;
+  types?: string;
   repoUrl?: string;
-  isPackage: boolean;
-  withTests: boolean;
+  isPackage?: boolean;
+  withTests?: boolean;
+  isNestProject?: boolean;
+  includeDotenv?: boolean;
 };
 
 export type ReadmeValues = {
-  projectName: string;
-  isNpmPackage: boolean;
+  projectName?: string;
+  isNpmPackage?: boolean;
+  configReferenceLink?: boolean;
 };
 
 export type EslintRcValues = {
-  withTests: boolean;
+  withTests?: boolean;
+  isNestProject?: boolean;
 };
 
 export type TsConfigValues = {
-  isPackage: boolean;
-  withTests: boolean;
+  isPackage?: boolean;
+  withTests?: boolean;
+  isNestProject?: boolean;
 };
 
 export type CommonFileValues =

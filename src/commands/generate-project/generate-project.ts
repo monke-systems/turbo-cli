@@ -6,6 +6,7 @@ import { renderCommonFile } from './files-render';
 import { resolveTemplatePath } from './template-resolver';
 import {
   getGenericTsDefinition,
+  getNestJsDefinition,
   getNpmPackageDefinition,
 } from './templates-definitions';
 import type { TemplateDefinition, GenerateProjectArgs } from './types';
@@ -31,6 +32,12 @@ export const generateProject = (args: GenerateProjectArgs) => {
         projectName,
         repositoryUrl,
         withTests,
+      });
+      break;
+    case TEMPLATE.NEST_JS:
+      definition = getNestJsDefinition({
+        projectName,
+        repositoryUrl,
       });
       break;
     default:

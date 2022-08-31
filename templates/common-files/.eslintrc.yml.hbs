@@ -9,3 +9,15 @@ env:
   {{/if}}
 extends:
   - '@monkee/eslint-config/typescript'
+{{#if isNestProject}}
+rules:
+  'no-console': error
+overrides:
+  - files: ['migrations/*.ts']
+    rules:
+      '@typescript-eslint/naming-convention': 0
+settings:
+  import/resolver:
+    typescript:
+      project: './tsconfig.json'
+{{/if}}

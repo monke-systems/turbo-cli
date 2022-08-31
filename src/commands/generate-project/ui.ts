@@ -14,6 +14,7 @@ export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
       choices: [
         { name: 'generic project with typescript', value: TEMPLATE.GENERIC_TS },
         { name: 'npm package with typescript', value: TEMPLATE.NPM_PACKAGE },
+        { name: 'nestjs project', value: TEMPLATE.NEST_JS },
       ],
     },
     {
