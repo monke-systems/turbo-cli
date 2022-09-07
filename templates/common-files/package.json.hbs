@@ -146,6 +146,24 @@
   "homepage": "{{repoUrl}}/#readme",
   {{/if}}
   {{#if withTests}}
+  {{#unless isNestProject}}
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  },
+  {{/unless}}
+  {{/if}}
+  {{#if isNestProject}}
   "jest": {
     "moduleFileExtensions": [
       "js",
@@ -167,23 +185,6 @@
       "^@app/logger(|/.*)$": "<rootDir>/libs/logger/src/$1"
     }
   },
-  {{#if isNestProject}}
-  {{else}}
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
-  },
-  {{/if}}
   {{/if}}
   "lint-staged": {
     "*.ts": "eslint"
