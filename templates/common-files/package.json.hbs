@@ -27,7 +27,7 @@
     "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "DOTENV_CONFIG_PATH=.env.e2e-test.local jest --setupFiles dotenv/config --config ./test/jest-e2e.json -t",
     "test:e2e:debug": "DOTENV_CONFIG_PATH=.env.e2e-tests node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --config tests/jest-e2e.json -t",
-    "typeorm": "NODE_ENV=development ts-node ./node_modules/typeorm/cli.js -f migrations/ormconfig.ts",
+    "typeorm": "NODE_ENV=development ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f migrations/ormconfig.ts",
     "typeorm:migration:generate": "npm run typeorm migration:generate -- -n",
     "typeorm:migration:run": "npm run typeorm migration:run",
     "typeorm:migration:revert": "npm run typeorm migration:revert",
