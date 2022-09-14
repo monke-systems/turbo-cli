@@ -1,6 +1,6 @@
 {
   "name": "@monkee/turbo-cli",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Turbo cli",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
