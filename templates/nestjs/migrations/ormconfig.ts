@@ -16,8 +16,11 @@ const ormconfig: ConnectionOptions = {
   ...config.mysql,
   username: config.mysql.user,
   type: 'mariadb',
+  cli: {
+    migrationsDir: 'migrations',
+  },
   migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
-  entities: [__dirname + '/../src/**/*.admin-entity{.ts,.js}'],
+  entities: [__dirname + '/../src/**/*.entity{.ts,.js}'],
 };
 
 export = ormconfig;
