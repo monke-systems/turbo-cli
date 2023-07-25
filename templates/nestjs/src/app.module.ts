@@ -1,3 +1,4 @@
+import * as path from 'node:path';
 import { TurboConfigModule } from '@monkee/turbo-config';
 import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
@@ -7,14 +8,19 @@ import {
   makeCounterProvider,
   makeHistogramProvider,
 } from '@willsoto/nestjs-prometheus';
-import { AppConfig } from './config';
+import {
+  utilities as nestWinstonModuleUtilities,
+  WinstonModule,
+} from 'nest-winston';
+import * as winston from 'winston';
+import { AppConfig } from './app.config';
 import { HealthcheckModule } from './healthcheck/healthcheck.module';
 import { DATABASE } from './shared/database.enum';
 import { MetricsInterceptor } from './shared/interceptors/metrics.interceptor';
 
 @Module({
   imports: [
-    TurboConfigModule.forRootAsync(AppConfig, {
+    TurboConfigModule.forRootAsync([AppConfig], {
       envFiles: ['.env.development', '.env.development.local'],
       loadEnvFiles: process.env.NODE_ENV === 'development',
     }),
@@ -33,16 +39,42 @@ import { MetricsInterceptor } from './shared/interceptors/metrics.interceptor';
       useFactory: (config: AppConfig) => {
         return {
           name: DATABASE.MAIN,
-          type: 'mariadb',
-          host: config.mysql.host,
-          port: config.mysql.port,
-          username: config.mysql.user,
-          password: config.mysql.password,
-          database: config.mysql.database,
-          logging: config.mysql.logTypeOrmQueries,
-          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          connectTimeoutMS: 3000,
+          retryAttempts: 5,
+          type: 'postgres',
+          ...config.pg,
+          logging: config.pg.logTypeOrmQueries,
+          migrations: [path.resolve(process.cwd(), 'dist/migrations/*.js')],
+          autoLoadEntities: true,
+          migrationsRun: config.pg.runMigrations,
         };
       },
+      inject: [AppConfig],
+    }),
+    WinstonModule.forRootAsync({
+      useFactory: (conf: AppConfig) => ({
+        level: conf.logging.level,
+        format: conf.logging.prettyMode
+          ? winston.format.combine(
+              winston.format.ms(),
+              nestWinstonModuleUtilities.format.nestLike('', {
+                colors: true,
+                prettyPrint: true,
+              }),
+            )
+          : winston.format.combine(
+              winston.format.errors({ stack: true }),
+              winston.format.timestamp({
+                format: () => Date.now().toString(),
+              }),
+              winston.format.json(),
+            ),
+        transports: [
+          new winston.transports.Console({
+            level: conf.logging.level,
+          }),
+        ],
+      }),
       inject: [AppConfig],
     }),
     HealthcheckModule,

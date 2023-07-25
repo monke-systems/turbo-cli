@@ -7,9 +7,5 @@
   "transform": {
     "^.+\\.ts$": "ts-jest"
   },
-  "verbose": true,
-  "moduleNameMapper": {
-    "@app/logger/(.*)": "<rootDir>/../libs/logger/src/$1",
-    "@app/logger": "<rootDir>/../libs/logger/src"
-  }
+  "verbose": true
 }

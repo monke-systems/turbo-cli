@@ -8,25 +8,25 @@
 
 **APP_CORS_ORIGIN**: string; *required*
 
-**LOG_ENABLED_CONTEXTS**: array; *default *
+**APP_LOG_PRETTY_MODE**: boolean; *default false*
 
-**LOG_DISABLED_CONTEXTS**: array; *default *
+**APP_LOG_LEVEL**: string; *default debug*
 
-**LOG_ALL_CONTEXTS_ENABLED**: boolean; *default true*
+**APP_PG_DATABASE**: string; *required*
 
-**LOG_COLORS**: boolean; *default false*
+**APP_PG_SCHEMA**: string; *required*
 
-**MYSQL_DATABASE**: string; *required*
+**APP_PG_HOST**: string; *required*
 
-**MYSQL_HOST**: string; *required*
+**APP_PG_PORT**: number; *default 5432*
 
-**MYSQL_PORT**: number; *default 3306*
+**APP_PG_USERNAME**: string; *required*
 
-**MYSQL_USER**: string; *required*
+**APP_PG_PASSWORD**: string; *required*
 
-**MYSQL_PASSWORD**: string; *required*
+**APP_PG_RUN_MIGRATIONS**: boolean; *default false*
 
-**MYSQL_RUN_MIGRATIONS**: boolean; *default false*
+**APP_PG_LOG_TYPE_ORM_QUERIES**: boolean; *default false*
 
-**MYSQL_LOG_TYPE_ORM_QUERIES**: boolean; *default false*
+**APP_PG_CREATE_DATABASE**: boolean; *default false*
 
