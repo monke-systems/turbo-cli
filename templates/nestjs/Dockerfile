@@ -18,6 +18,6 @@ COPY package*.json ./
 RUN npm pkg set scripts.prepare="ls"
 RUN npm i --no-audit --omit=dev
 
-COPY --from=build /app/dist .
+COPY --from=build /app/dist ./dist
 
-CMD ["node", "src/main.js"]
+CMD ["node", "dist/src/main.js"]
