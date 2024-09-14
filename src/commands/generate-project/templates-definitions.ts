@@ -1,5 +1,5 @@
-import type { TemplateDefinition } from './types';
-import { COMMON_DIR, COMMON_FILE, TEMPLATE } from './types';
+import type { TemplateDefinition } from "./types";
+import { CommonDir, CommonFile, Template } from "./types";
 
 export const getNpmPackageDefinition = (args: {
   projectName: string;
@@ -7,48 +7,44 @@ export const getNpmPackageDefinition = (args: {
   repositoryUrl?: string;
 }): TemplateDefinition => {
   return {
-    type: TEMPLATE.NPM_PACKAGE,
-    commonDirs: [
-      COMMON_DIR.HUSKY,
-      ...(args.withTests ? [COMMON_DIR.TESTS] : []),
-    ],
+    type: Template.NpmPackage,
+    commonDirs: [...(args.withTests ? [CommonDir.Tests] : [])],
     commonFiles: [
-      { type: COMMON_FILE.EDITOR_CONIFG },
-      { type: COMMON_FILE.PRETTIER_RC },
-      { type: COMMON_FILE.GIT_IGNORE },
-      { type: COMMON_FILE.NPM_RC },
+      { type: CommonFile.EditorConfig },
+      { type: CommonFile.PrettierRc },
+      { type: CommonFile.GitIgnore },
       {
-        type: COMMON_FILE.ESLINT_RC,
+        type: CommonFile.EslintRc,
         values: {
           withTests: args.withTests,
         },
       },
       {
-        type: COMMON_FILE.PACKAGE_JSON,
+        type: CommonFile.PackageJson,
         values: {
           packageName: args.projectName,
-          main: 'lib/index.js',
-          types: 'lib/index.d.ts',
+          main: "lib/index.js",
+          types: "lib/index.d.ts",
           repoUrl: args.repositoryUrl,
           isPackage: true,
           withTests: args.withTests,
         },
       },
       {
-        type: COMMON_FILE.README,
+        type: CommonFile.Readme,
         values: {
           projectName: args.projectName,
           isNpmPackage: true,
         },
       },
       {
-        type: COMMON_FILE.TS_CONFIG,
+        type: CommonFile.TsConfig,
         values: {
           isPackage: true,
           withTests: args.withTests,
         },
       },
-      { type: COMMON_FILE.TS_CONFIG_BUILD },
+      { type: CommonFile.TsConfigBuild },
     ],
   };
 };
@@ -59,48 +55,44 @@ export const getGenericTsDefinition = (args: {
   withTests: boolean;
 }): TemplateDefinition => {
   return {
-    type: TEMPLATE.GENERIC_TS,
-    commonDirs: [
-      COMMON_DIR.HUSKY,
-      ...(args.withTests ? [COMMON_DIR.TESTS] : []),
-    ],
+    type: Template.GenericTs,
+    commonDirs: [...(args.withTests ? [CommonDir.Tests] : [])],
     commonFiles: [
-      { type: COMMON_FILE.EDITOR_CONIFG },
-      { type: COMMON_FILE.GIT_IGNORE },
-      { type: COMMON_FILE.PRETTIER_RC },
-      { type: COMMON_FILE.NPM_RC },
+      { type: CommonFile.EditorConfig },
+      { type: CommonFile.GitIgnore },
+      { type: CommonFile.PrettierRc },
       {
-        type: COMMON_FILE.ESLINT_RC,
+        type: CommonFile.EslintRc,
         values: {
           withTests: args.withTests,
         },
       },
       {
-        type: COMMON_FILE.PACKAGE_JSON,
+        type: CommonFile.PackageJson,
         values: {
           packageName: args.projectName,
-          main: 'dist/index.js',
-          types: 'dist/index.d.ts',
+          main: "dist/index.js",
+          types: "dist/index.d.ts",
           repoUrl: args.repositoryUrl,
           isPackage: false,
           withTests: args.withTests,
         },
       },
       {
-        type: COMMON_FILE.README,
+        type: CommonFile.Readme,
         values: {
           projectName: args.projectName,
           isNpmPackage: false,
         },
       },
       {
-        type: COMMON_FILE.TS_CONFIG,
+        type: CommonFile.TsConfig,
         values: {
           isPackage: false,
           withTests: args.withTests,
         },
       },
-      { type: COMMON_FILE.TS_CONFIG_BUILD },
+      { type: CommonFile.TsConfigBuild },
     ],
   };
 };
@@ -110,25 +102,24 @@ export const getNestJsDefinition = (args: {
   repositoryUrl: string;
 }): TemplateDefinition => {
   return {
-    type: TEMPLATE.NEST_JS,
-    commonDirs: [COMMON_DIR.HUSKY],
+    type: Template.NestJs,
+    commonDirs: [],
     commonFiles: [
-      { type: COMMON_FILE.EDITOR_CONIFG },
-      { type: COMMON_FILE.GIT_IGNORE },
-      { type: COMMON_FILE.PRETTIER_RC },
-      { type: COMMON_FILE.NPM_RC },
+      { type: CommonFile.EditorConfig },
+      { type: CommonFile.GitIgnore },
+      { type: CommonFile.PrettierRc },
       {
-        type: COMMON_FILE.ESLINT_RC,
+        type: CommonFile.EslintRc,
         values: {
           withTests: true,
           isNestProject: true,
         },
       },
       {
-        type: COMMON_FILE.PACKAGE_JSON,
+        type: CommonFile.PackageJson,
         values: {
           packageName: args.projectName,
-          main: 'dist/src/main.js',
+          main: "dist/src/main.js",
           repoUrl: args.repositoryUrl,
           isPackage: false,
           withTests: true,
@@ -137,21 +128,21 @@ export const getNestJsDefinition = (args: {
         },
       },
       {
-        type: COMMON_FILE.README,
+        type: CommonFile.Readme,
         values: {
           projectName: args.projectName,
           configReferenceLink: true,
         },
       },
       {
-        type: COMMON_FILE.TS_CONFIG,
+        type: CommonFile.TsConfig,
         values: {
           isPackage: false,
           isNestProject: true,
         },
       },
       {
-        type: COMMON_FILE.TS_CONFIG_BUILD,
+        type: CommonFile.TsConfigBuild,
         values: {
           isNestProject: true,
         },

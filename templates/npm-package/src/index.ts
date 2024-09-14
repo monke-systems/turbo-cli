@@ -1,3 +1,3 @@
 export const zdorova = (): string => {
-  return 'zdorova';
+  return "zdorova";
 };

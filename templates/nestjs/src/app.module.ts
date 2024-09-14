@@ -1,33 +1,33 @@
-import * as path from 'node:path';
-import { TurboConfigModule } from '@monkee/turbo-config';
-import { Module } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import * as path from "node:path";
+import { TurboConfigModule } from "@monkee/turbo-config";
+import { Module } from "@nestjs/common";
+import { APP_INTERCEPTOR } from "@nestjs/core";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import {
   PrometheusModule,
   makeCounterProvider,
   makeHistogramProvider,
-} from '@willsoto/nestjs-prometheus';
+} from "@willsoto/nestjs-prometheus";
 import {
   utilities as nestWinstonModuleUtilities,
   WinstonModule,
-} from 'nest-winston';
-import * as winston from 'winston';
-import { AppConfig } from './app.config';
-import { HealthcheckModule } from './healthcheck/healthcheck.module';
-import { DATABASE } from './shared/database.enum';
-import { MetricsInterceptor } from './shared/interceptors/metrics.interceptor';
+} from "nest-winston";
+import * as winston from "winston";
+import { AppConfig } from "./app.config";
+import { HealthcheckModule } from "./healthcheck/healthcheck.module";
+import { DATABASE } from "./shared/database.enum";
+import { MetricsInterceptor } from "./shared/interceptors/metrics.interceptor";
 
 @Module({
   imports: [
     TurboConfigModule.forRootAsync([AppConfig], {
-      envFiles: ['.env.development', '.env.development.local'],
-      loadEnvFiles: process.env.NODE_ENV === 'development',
+      envFiles: [".env.development", ".env.development.local"],
+      loadEnvFiles: process.env.NODE_ENV === "development",
     }),
     PrometheusModule.register({
-      path: '/metrics',
+      path: "/metrics",
       defaultLabels: {
-        appName: 'example-app',
+        appName: "example-app",
       },
       defaultMetrics: {
         enabled: false,
@@ -41,10 +41,10 @@ import { MetricsInterceptor } from './shared/interceptors/metrics.interceptor';
           name: DATABASE.MAIN,
           connectTimeoutMS: 3000,
           retryAttempts: 5,
-          type: 'postgres',
+          type: "postgres",
           ...config.pg,
           logging: config.pg.logTypeOrmQueries,
-          migrations: [path.resolve(process.cwd(), 'dist/migrations/*.js')],
+          migrations: [path.resolve(process.cwd(), "dist/migrations/*.js")],
           autoLoadEntities: true,
           migrationsRun: config.pg.runMigrations,
         };
@@ -57,7 +57,7 @@ import { MetricsInterceptor } from './shared/interceptors/metrics.interceptor';
         format: conf.logging.prettyMode
           ? winston.format.combine(
               winston.format.ms(),
-              nestWinstonModuleUtilities.format.nestLike('', {
+              nestWinstonModuleUtilities.format.nestLike("", {
                 colors: true,
                 prettyPrint: true,
               }),
@@ -81,14 +81,14 @@ import { MetricsInterceptor } from './shared/interceptors/metrics.interceptor';
   ],
   providers: [
     makeCounterProvider({
-      name: 'http_requests_count',
-      help: 'http requests count',
-      labelNames: ['endpoint', 'method'],
+      name: "http_requests_count",
+      help: "http requests count",
+      labelNames: ["endpoint", "method"],
     }),
     makeHistogramProvider({
-      name: 'http_requests_bucket',
-      help: 'http requests bucket',
-      labelNames: ['endpoint', 'method'],
+      name: "http_requests_bucket",
+      help: "http requests bucket",
+      labelNames: ["endpoint", "method"],
     }),
     {
       provide: APP_INTERCEPTOR,

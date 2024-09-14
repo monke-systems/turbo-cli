@@ -1,13 +1,13 @@
-import type { CommonFileValues } from './common-files-values';
+import type { CommonFileValues } from "./common-files-values";
 
-export enum TEMPLATE {
-  NPM_PACKAGE = 'npm-package',
-  GENERIC_TS = 'generic-ts',
-  NEST_JS = 'nestjs',
+export enum Template {
+  NpmPackage = "npm-package",
+  GenericTs = "generic-ts",
+  NestJs = "nestjs",
 }
 
 export type GenerateProjectArgs = {
-  template: TEMPLATE;
+  template: Template;
   targetDir: string;
   projectName: string;
   repositoryUrl: string;
@@ -15,36 +15,34 @@ export type GenerateProjectArgs = {
   initGitRepo: boolean;
 };
 
-export enum TEMPLATE_ROOT {
-  COMMON_FILE = 'common-files',
-  COMMON_DIR = 'common-dirs',
-  TEMPLATE = '',
+export enum TemplateRoot {
+  CommonFile = "common-files",
+  CommonDir = "common-dirs",
+  Template = "",
 }
 
-export enum COMMON_FILE {
-  EDITOR_CONIFG = '.editorconfig',
-  ESLINT_RC = '.eslintrc.yml',
-  GIT_IGNORE = '.gitignore',
-  NPM_RC = '.npmrc',
-  PRETTIER_RC = '.prettierrc.yml',
-  PACKAGE_JSON = 'package.json',
-  README = 'README.md',
-  TS_CONFIG_BUILD = 'tsconfig.build.json',
-  TS_CONFIG = 'tsconfig.json',
+export enum CommonFile {
+  EditorConfig = ".editorconfig",
+  EslintRc = ".eslintrc.yml",
+  GitIgnore = ".gitignore",
+  PrettierRc = ".prettierrc.yml",
+  PackageJson = "package.json",
+  Readme = "README.md",
+  TsConfigBuild = "tsconfig.build.json",
+  TsConfig = "tsconfig.json",
 }
 
-export enum COMMON_DIR {
-  HUSKY = '.husky',
-  TESTS = 'tests',
+export enum CommonDir {
+  Tests = "tests",
 }
 
 export type CommonFileDefinition = {
-  type: COMMON_FILE;
+  type: CommonFile;
   values?: CommonFileValues;
 };
 
 export type TemplateDefinition = {
-  type: TEMPLATE;
+  type: Template;
   commonFiles: CommonFileDefinition[];
-  commonDirs: COMMON_DIR[];
+  commonDirs: CommonDir[];
 };

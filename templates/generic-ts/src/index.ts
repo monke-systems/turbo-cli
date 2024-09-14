@@ -1,5 +1,5 @@
 const main = () => {
-  process.stdout.write('Zdorova');
+  process.stdout.write("Zdorova");
 };
 
 main();

@@ -1,7 +1,7 @@
-import { execSync } from 'child_process';
+import { execSync } from "child_process";
 
 export const initGitRepo = (path: string) => {
-  execSync('git init .', {
+  execSync("git init .", {
     cwd: path,
   });
 };

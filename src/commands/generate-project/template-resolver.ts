@@ -1,25 +1,25 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import type { COMMON_FILE, COMMON_DIR, TEMPLATE } from './types';
-import { TEMPLATE_ROOT } from './types';
+import * as fs from "fs";
+import * as path from "path";
+import type { CommonFile, CommonDir, Template } from "./types";
+import { TemplateRoot } from "./types";
 
 // TODO: придумайте что-то получше
 const resolvePackageRootDir = (): string => {
-  return path.join(__dirname, '..', '..', '..');
+  return path.join(__dirname, "..", "..", "..");
 };
 
 export const resolveTemplatePath = (
-  template: COMMON_FILE | COMMON_DIR | TEMPLATE,
-  root: TEMPLATE_ROOT,
+  template: CommonFile | CommonDir | Template,
+  root: TemplateRoot,
 ) => {
   const fileName =
-    root === TEMPLATE_ROOT.COMMON_FILE ? `${template}.hbs` : template;
+    root === TemplateRoot.CommonFile ? `${template}.hbs` : template;
 
   const packageRootDir = resolvePackageRootDir();
 
   const templatePath = path.resolve(
     packageRootDir,
-    'templates',
+    "templates",
     root,
     fileName,
   );

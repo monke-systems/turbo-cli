@@ -1,3 +1,3 @@
 export enum CONTEXT {
-  BOOTSTRAP = 'bootstrap',
+  BOOTSTRAP = "bootstrap",
 }

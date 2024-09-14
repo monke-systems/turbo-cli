@@ -1,9 +1,9 @@
-import { equal } from 'assert';
-import { zdorova } from './index';
+import { equal } from "assert";
+import { zdorova } from "./index";
 
-describe('[zdorova]', () => {
-  it('Just works', () => {
+describe("[zdorova]", () => {
+  it("Just works", () => {
     const res = zdorova();
-    equal(res, 'zdorova');
+    equal(res, "zdorova");
   });
 });

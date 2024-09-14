@@ -1,8 +1,8 @@
-import type { TestingModule } from '@nestjs/testing';
-import { Test } from '@nestjs/testing';
-import { HealthcheckController } from './healthcheck.controller';
+import type { TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
+import { HealthcheckController } from "./healthcheck.controller";
 
-describe('HealthheckController', () => {
+describe("HealthheckController", () => {
   let controller: HealthcheckController;
 
   beforeEach(async () => {
@@ -13,7 +13,7 @@ describe('HealthheckController', () => {
     controller = module.get<HealthcheckController>(HealthcheckController);
   });
 
-  it('Ping pong', () => {
-    expect(controller.ping()).toStrictEqual('pong');
+  it("Ping pong", () => {
+    expect(controller.ping()).toStrictEqual("pong");
   });
 });

@@ -1,10 +1,10 @@
-import type { INestApplication } from '@nestjs/common';
-import type { TestingModule } from '@nestjs/testing';
-import { Test } from '@nestjs/testing';
-import * as request from 'supertest';
-import { AppModule } from '../src/app.module';
+import type { INestApplication } from "@nestjs/common";
+import type { TestingModule } from "@nestjs/testing";
+import { Test } from "@nestjs/testing";
+import * as request from "supertest";
+import { AppModule } from "../src/app.module";
 
-describe('Healthcheck (e2e)', () => {
+describe("Healthcheck (e2e)", () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -21,7 +21,7 @@ describe('Healthcheck (e2e)', () => {
     await app.close();
   });
 
-  it('Ping pong endpoint', () => {
-    return request(app.getHttpServer()).get('/healthcheck/ping').expect('pong');
+  it("Ping pong endpoint", () => {
+    return request(app.getHttpServer()).get("/healthcheck/ping").expect("pong");
   });
 });

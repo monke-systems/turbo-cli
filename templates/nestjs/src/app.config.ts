@@ -1,10 +1,10 @@
-import { ConfigField, ConfigPrefix } from '@monkee/turbo-config';
-import { IsEnum, IsOptional } from 'class-validator';
+import { ConfigField, ConfigPrefix } from "@monkee/turbo-config";
+import { IsEnum, IsOptional } from "class-validator";
 
 export enum NODE_ENV {
-  DEVELOPMENT = 'development',
-  PRODUCTION = 'production',
-  TEST = 'test',
+  DEVELOPMENT = "development",
+  PRODUCTION = "production",
+  TEST = "test",
 }
 
 export class PgConfig {
@@ -41,26 +41,26 @@ export class LoggingConfig {
   prettyMode: boolean = false;
 
   @ConfigField()
-  level: string = 'debug';
+  level: string = "debug";
 }
 
-@ConfigPrefix('app')
+@ConfigPrefix("app")
 export class AppConfig {
   @ConfigField()
   port: number = 3000;
 
-  @ConfigField({ envKey: 'NODE_ENV' })
+  @ConfigField({ envKey: "NODE_ENV" })
   @IsEnum(NODE_ENV)
   env: NODE_ENV = NODE_ENV.PRODUCTION;
 
   @ConfigField()
-  version: string = 'local_version';
+  version: string = "local_version";
 
   @ConfigField()
   @IsOptional()
   corsOrigin?: string;
 
-  @ConfigField({ nested: true, nestedKey: 'log' })
+  @ConfigField({ nested: true, nestedKey: "log" })
   logging!: LoggingConfig;
 
   @ConfigField({ nested: true })

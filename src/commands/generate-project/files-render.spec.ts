@@ -1,16 +1,16 @@
-import { doesNotThrow } from 'assert';
-import { renderCommonFile } from './files-render';
-import { COMMON_FILE } from './types';
+import { doesNotThrow } from "assert";
+import { renderCommonFile } from "./files-render";
+import { CommonFile } from "./types";
 
-describe('[filesRender] specs', () => {
-  it('Generates correct package.json. One variant of usage.', async () => {
+describe("[filesRender] specs", () => {
+  it("Generates correct package.json. One variant of usage.", async () => {
     const result = renderCommonFile({
-      type: COMMON_FILE.PACKAGE_JSON,
+      type: CommonFile.PackageJson,
       values: {
-        packageName: 'test-pkg',
-        main: 'lib/test.js',
-        types: 'lib/test.d.ts',
-        repoUrl: 'git://zhopa.ru',
+        packageName: "test-pkg",
+        main: "lib/test.js",
+        types: "lib/test.d.ts",
+        repoUrl: "git://zhopa.ru",
         isPackage: true,
         withTests: true,
       },

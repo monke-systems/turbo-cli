@@ -1,8 +1,8 @@
-import * as crypto from 'crypto';
+import * as crypto from "crypto";
 // import { Connection } from 'typeorm';
 
 export const getRandomString = (length: number) =>
-  crypto.randomBytes(Math.floor(length / 2)).toString('hex');
+  crypto.randomBytes(Math.floor(length / 2)).toString("hex");
 //
 // const generateDatabaseName = () => {
 //   return `nestjs_test_db_${getRandomString(10)}`;

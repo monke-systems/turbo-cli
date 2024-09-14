@@ -2,18 +2,18 @@ import type {
   NestInterceptor,
   ExecutionContext,
   CallHandler,
-} from '@nestjs/common';
-import { Injectable } from '@nestjs/common';
-import { InjectMetric } from '@willsoto/nestjs-prometheus';
-import type { Request } from 'express';
-import { Counter, Histogram } from 'prom-client';
-import { tap } from 'rxjs/operators';
+} from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
+import { InjectMetric } from "@willsoto/nestjs-prometheus";
+import type { Request } from "express";
+import type { Counter, Histogram } from "prom-client";
+import { tap } from "rxjs/operators";
 
 @Injectable()
 export class MetricsInterceptor implements NestInterceptor {
   constructor(
-    @InjectMetric('http_requests_count') private counter: Counter<string>,
-    @InjectMetric('http_requests_bucket') private histogram: Histogram<string>,
+    @InjectMetric("http_requests_count") private counter: Counter<string>,
+    @InjectMetric("http_requests_bucket") private histogram: Histogram<string>,
   ) {}
 
   intercept(context: ExecutionContext, next: CallHandler) {

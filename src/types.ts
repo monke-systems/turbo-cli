@@ -1,4 +1,4 @@
-export enum COMMAND {
-  WHOAMI = 'whoami',
-  GENERATE_PROJECT = 'generate_project',
+export enum Command {
+  Whoami = "whoami",
+  GenerateProject = "generate_project",
 }

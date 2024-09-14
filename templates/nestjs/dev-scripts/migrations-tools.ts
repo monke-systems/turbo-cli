@@ -1,18 +1,18 @@
-import * as path from 'path';
-import * as prompts from 'prompts';
-import { MigrationCreateCommand } from 'typeorm/commands/MigrationCreateCommand';
-import { MigrationGenerateCommand } from 'typeorm/commands/MigrationGenerateCommand';
-import { MigrationRevertCommand } from 'typeorm/commands/MigrationRevertCommand';
-import { MigrationRunCommand } from 'typeorm/commands/MigrationRunCommand';
-import { MigrationShowCommand } from 'typeorm/commands/MigrationShowCommand';
-import type * as yargs from 'yargs';
+import * as path from "path";
+import * as prompts from "prompts";
+import { MigrationCreateCommand } from "typeorm/commands/MigrationCreateCommand";
+import { MigrationGenerateCommand } from "typeorm/commands/MigrationGenerateCommand";
+import { MigrationRevertCommand } from "typeorm/commands/MigrationRevertCommand";
+import { MigrationRunCommand } from "typeorm/commands/MigrationRunCommand";
+import { MigrationShowCommand } from "typeorm/commands/MigrationShowCommand";
+import type * as yargs from "yargs";
 
 enum OPERATION {
-  GENERATE = 'generate',
-  CREATE = 'create',
-  RUN = 'run',
-  REVERT = 'revert',
-  SHOW = 'show',
+  GENERATE = "generate",
+  CREATE = "create",
+  RUN = "run",
+  REVERT = "revert",
+  SHOW = "show",
 }
 
 const operationsClasses: Record<string, yargs.CommandModule> = {
@@ -32,15 +32,15 @@ const runPrompt = async (): Promise<PromptResult> => {
   const res = await prompts(
     [
       {
-        type: 'select',
-        name: 'operation',
-        message: 'Select operation',
+        type: "select",
+        name: "operation",
+        message: "Select operation",
         choices: [
-          { title: 'Generate migration', value: OPERATION.GENERATE },
-          { title: 'Create empty migration', value: OPERATION.CREATE },
-          { title: 'Execute all pending migrations', value: OPERATION.RUN },
+          { title: "Generate migration", value: OPERATION.GENERATE },
+          { title: "Create empty migration", value: OPERATION.CREATE },
+          { title: "Execute all pending migrations", value: OPERATION.RUN },
           {
-            title: 'Revert the most recently executed migration',
+            title: "Revert the most recently executed migration",
             value: OPERATION.REVERT,
           },
           {
@@ -52,15 +52,15 @@ const runPrompt = async (): Promise<PromptResult> => {
       },
       {
         type: (prev: OPERATION) =>
-          [OPERATION.GENERATE, OPERATION.CREATE].includes(prev) ? 'text' : null,
-        name: 'migrationName',
-        message: 'Migration name',
+          [OPERATION.GENERATE, OPERATION.CREATE].includes(prev) ? "text" : null,
+        name: "migrationName",
+        message: "Migration name",
         validate: (input: string) => input.length > 1,
       },
     ],
     {
       onCancel: () => {
-        console.log('Goodbye!');
+        console.log("Goodbye!");
         process.exit(0);
       },
     },
@@ -72,11 +72,11 @@ const runPrompt = async (): Promise<PromptResult> => {
 const main = async () => {
   const { operation, migrationName } = await runPrompt();
 
-  const migrationsPath = path.resolve(process.cwd(), 'migrations');
+  const migrationsPath = path.resolve(process.cwd(), "migrations");
   const ormConfigPath = path.resolve(
     migrationsPath,
-    'config',
-    'data-source-opts.ts',
+    "config",
+    "data-source-opts.ts",
   );
 
   const command = operationsClasses[operation];
@@ -87,7 +87,7 @@ const main = async () => {
 
   await command!.handler({
     _: [],
-    $0: 'dumb',
+    $0: "dumb",
     dataSource: ormConfigPath,
     path: pathForCommand,
   });

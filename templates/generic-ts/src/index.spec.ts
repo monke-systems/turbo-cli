@@ -1,7 +1,7 @@
-import { equal } from 'assert/strict';
+import { equal } from "assert/strict";
 
-describe('[zdorova]', () => {
-  it('Just works', () => {
+describe("[zdorova]", () => {
+  it("Just works", () => {
     equal(true, true);
   });
 });

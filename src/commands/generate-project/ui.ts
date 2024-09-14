@@ -1,26 +1,26 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as inquirer from 'inquirer';
-import { isNodeError } from '../../utils/utils';
-import type { GenerateProjectArgs } from './types';
-import { TEMPLATE } from './types';
+import * as fs from "fs";
+import * as path from "path";
+import * as inquirer from "inquirer";
+import { isNodeError } from "../../utils/utils";
+import type { GenerateProjectArgs } from "./types";
+import { Template } from "./types";
 
 export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
   const results = await inquirer.prompt([
     {
-      name: 'template',
-      type: 'list',
-      message: 'Nice. Сhoose, buddy',
+      name: "template",
+      type: "list",
+      message: "Nice. Сhoose, buddy",
       choices: [
-        { name: 'generic project with typescript', value: TEMPLATE.GENERIC_TS },
-        { name: 'npm package with typescript', value: TEMPLATE.NPM_PACKAGE },
-        { name: 'nestjs project', value: TEMPLATE.NEST_JS },
+        { name: "generic project with typescript", value: Template.GenericTs },
+        { name: "npm package with typescript", value: Template.NpmPackage },
+        { name: "nestjs project", value: Template.NestJs },
       ],
     },
     {
-      name: 'targetDir',
-      type: 'input',
-      message: 'Which folder will you choose?\n',
+      name: "targetDir",
+      type: "input",
+      message: "Which folder will you choose?\n",
       default: path.resolve(),
       filter: (value: string) => {
         return path.resolve(value);
@@ -35,7 +35,7 @@ export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
           }
           return true;
         } catch (e) {
-          if (isNodeError(e) && e.code === 'ENOENT') {
+          if (isNodeError(e) && e.code === "ENOENT") {
             return true;
           }
           throw e;
@@ -43,31 +43,31 @@ export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
       },
     },
     {
-      name: 'projectName',
-      type: 'input',
-      message: 'Project name?',
+      name: "projectName",
+      type: "input",
+      message: "Project name?",
       validate: (val: string) => val.length > 0,
     },
     {
-      name: 'repositoryUrl',
-      type: 'input',
-      message: 'Repository url. You can leave it empty, bro',
+      name: "repositoryUrl",
+      type: "input",
+      message: "Repository url. You can leave it empty, bro",
     },
     {
-      name: 'features',
-      type: 'checkbox',
-      message: 'Select features',
+      name: "features",
+      type: "checkbox",
+      message: "Select features",
       choices: [
-        { name: 'e2e and unit test with jest', value: 'tests', checked: true },
-        { name: 'init git repository', value: 'initGit', checked: true },
+        { name: "e2e and unit test with jest", value: "tests", checked: true },
+        { name: "init git repository", value: "initGit", checked: true },
       ],
     },
   ]);
 
   const { confirm } = await inquirer.prompt([
     {
-      name: 'confirm',
-      type: 'confirm',
+      name: "confirm",
+      type: "confirm",
       message: `What we got to do \n${JSON.stringify(
         results,
         null,
@@ -87,7 +87,7 @@ export const askProjectTemplate = async (): Promise<GenerateProjectArgs> => {
     targetDir,
     projectName,
     repositoryUrl,
-    withTests: features.includes('tests'),
-    initGitRepo: features.includes('initGit'),
+    withTests: features.includes("tests"),
+    initGitRepo: features.includes("initGit"),
   };
 };

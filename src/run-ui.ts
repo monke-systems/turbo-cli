@@ -1,3 +1,3 @@
-import { runUi } from './index';
+import { runUi } from "./index";
 
 runUi().catch(console.error);
